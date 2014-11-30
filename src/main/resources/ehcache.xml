@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+	<!--缓存可以存储的总记录量 -->
+	<!--缓存是否永远不销毁 -->
+	<!--当缓存中的数据达到最大值时，是否把缓存数据写入磁盘 -->
+	<!--当缓存闲置时间超过该值，则缓存自动销毁 -->
+	<!--缓存创建之后，到达该缓存自动销毁 -->
+	<defaultCache maxElementsInMemory="5"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="15"
+		timeToLiveSeconds="120"
+		/>
+</ehcache>

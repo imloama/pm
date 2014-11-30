@@ -1,0 +1,112 @@
+	<div  class="content-header">
+          <ol class="breadcrumb">
+              <li><a href="javascript:void(0)"><i class="fa fa-home padding-r-5"></i>主页</a></li>
+              <li><a href="javascript:void(0)"><i class="fa fa-cogs padding-r-5"></i>系统管理</a></li>
+              <li class="active"><i class="fa fa-male padding-r-5"></i>角色管理</li>
+          </ol>
+	</div>
+	<!-- 分成上下两个区域,上部为按钮区,下部为内容区,内容区显示为两部分,左侧树,右侧form表单 -->
+	<div class="content">
+		  <!-- 1. 查询区 -->
+		 <div class="row">
+		 	<div class="col-md-12">
+		 		<form class="form-inline" role="form" ng-submit="search()">
+		 			 <div class="form-group">
+					    <div class="input-group">
+					      <div class="input-group-addon">编码</div>
+					      <input class="form-control" type="text" id="code" name="code" placeholder="请输入编码" ng-model="searchForm.code">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="input-group">
+					      <div class="input-group-addon">名称</div>
+					      <input class="form-control" type="text" id="name" name="name" placeholder="请输入名称" ng-model="searchForm.name">
+					    </div>
+					  </div>
+						  <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search padding-r-5"></i>查询</button>
+					  <div class="btn-group">
+						  <button type="button" class="btn btn-sm btn-primary" ng-click="add()"><i class="fa fa-plus padding-r-5"></i>新增</button>
+						  <!-- 
+						  <button type="button" class="btn btn-sm btn-info" ng-click="edit()"><i class="fa fa-edit padding-r-5"></i>修改</button>
+						  <button type="button" class="btn btn-sm btn-danger" ng-click="del()"><i class="fa fa-times padding-r-5"></i>删除</button>
+					  		 -->
+					  </div>
+		 		</form>
+		 	</div>
+		 </div><!-- //查询区结束 -->
+		 <hr>
+		 <!-- 2. 内容区 -->
+		 <div class="row">
+		 	<div class="col-md-12">
+		 		 <div class="box">
+                    <div id="rolesDiv" class="box-body">
+                     
+                     </div><!-- /.box-body -->
+                    <div id="rolesTable-page" class="box-footer clearfix">
+                       <pagination boundary-links="true" total-items="page.totalElements" ng-model="currentPage" 
+	                       	items-per-page="page.size"
+	                       	class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" 
+	                       	first-text="&laquo;" last-text="&raquo;"></pagination>
+                    </div>
+              </div><!-- /.box -->
+		 	</div>
+		 </div><!-- //内容区结束 -->
+	</div>	 
+	
+
+
+<!--// 1.  表格模板   接收的是page对象 -->	
+<script id="rolesTableTpl" type="text/html">
+		<table id="rolesTable" class="table table-bordered table-striped">
+           <tr>
+               <th style="width: 10px">#</th>
+               <th>编码</th>
+               <th>名称</th>
+               <th>描述</th>
+               <th>操作</th>
+            </tr>
+	<%for (var i=0;i<content.length;i++){%>
+		<tr>
+			<td><%=content[i].id%></td>
+			<td><%=content[i].code%></td>
+			<td><%=content[i].name%></td>
+			<td><%=content[i].description%></td>
+			<td>
+				<div class="btn-group p-t-b-5">
+  					<button type="button" class="btn  btn-sm btn-info"><i class="fa fa-edit"></i></button>
+  					<button type="button" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+				</div>
+			</td>
+		</tr>
+	<%}%>
+</table>
+</script>
+
+<!-- // 2.底部分页  接收封装处理过的page对象 -->
+<script id="roleTalbePageTpl" type="text/html">
+
+
+	
+	<ul class="pagination pagination-sm no-margin pull-right">
+		<%if (firstPage){%>
+			 <li class="disabled"><a href="javascript:void(0)">&laquo;</a></li>
+		<%}else{%>
+			<li><a href="javascript:void(0)" ng-click="roleQuery(1)">&laquo;</a></li>
+		<%}%>
+		<%for(var i=firstIndex;i<=lastIndex;i++){%>
+			<%if(i==number){%>			
+				<li class="disabled"><a href="javascript:void(0)"><%=i%></a></li>
+			<%}else{%>
+				<li><a href="javascript:void(0)" ng-click="roleQuery(<%=i%>)"><%=i%></a></li>
+			<%}%>
+		<%}%>
+		<%if (lastPage){%>
+			<li class="disabled"><a href="javascript:void(0)">&raquo;</a></li>
+		<%}else{%>
+			<li class="disabled"><a href="javascript:void(0)" ng-click="roleQuery(<%=totalPages%>)">&raquo;</a></li>
+		<%}%>
+	</ul>
+<span class="pull-right">共<%=totalElements%>条记录，<%=totalPages%>页，每页显示<%=size%>条记录。</span>
+</script>
+	
+	

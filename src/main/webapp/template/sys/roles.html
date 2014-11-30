@@ -1,0 +1,67 @@
+	<div  class="content-header">
+          <ol class="breadcrumb">
+              <li><a href="javascript:void(0)"><i class="fa fa-home padding-r-5"></i>主页</a></li>
+              <li><a href="javascript:void(0)"><i class="fa fa-cogs padding-r-5"></i>系统管理</a></li>
+              <li class="active"><i class="fa fa-male padding-r-5"></i>角色管理</li>
+          </ol>
+	</div>
+	<!-- 分成上下两个区域,上部为按钮区,下部为内容区,内容区显示为两部分,左侧树,右侧form表单 -->
+	<div class="content">
+		  <!-- 1. 查询区 -->
+		 <div class="row">
+		 	<div class="col-md-12">
+		 		<form class="form-inline" role="form">
+		 			 <div class="form-group">
+					    <div class="input-group">
+					      <div class="input-group-addon">编码</div>
+					      <input class="form-control" type="text" id="code" name="code" placeholder="请输入编码" ng-model="searchForm.code">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="input-group">
+					      <div class="input-group-addon">名称</div>
+					      <input class="form-control" type="text" id="name" name="name" placeholder="请输入名称" ng-model="searchForm.name">
+					    </div>
+					  </div>
+						  <button type="submit" class="btn btn-sm btn-default" ng-click="search()"><i class="fa fa-search padding-r-5"></i>查询</button>
+					  <div class="btn-group">
+						  <button type="button" class="btn btn-sm btn-primary" ng-click="add()"><i class="fa fa-plus padding-r-5"></i>新增</button>
+					  </div>
+		 		</form>
+		 	</div>
+		 </div><!-- //查询区结束 -->
+		 <hr>
+		 <!-- 2. 内容区 -->
+		 <div class="row">
+		 	<div class="col-md-12">
+		 		 <div class="box">
+                    <div id="rolesDiv" class="box-body">
+                     	<div id="rolesGrid" style="height:100px;" ng-grid="gridOptions"></div>
+                     </div><!-- /.box-body -->
+                    <div id="rolesTable-page" class="box-footer clearfix">
+                       <div class="row total-div">
+                       			<div class="col-md-6 total-txt">共{{page.totalElements}}条记录,{{page.totalPages}}页.</div>
+                       			<div class="col-md-6">
+                       			<div class=" pull-right">
+                       			<pagination boundary-links="true" total-items="page.totalElements" ng-model="currentPage" 
+	                       	items-per-page="page.size"  ng-change="pageChanged()"
+	                       	class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" 
+	                       	first-text="&laquo;" last-text="&raquo;"></pagination></div>
+	                       	</div>
+                       </div>
+                    </div>
+              </div><!-- /.box -->
+		 	</div>
+		 </div><!-- //内容区结束 -->
+		 
+		 <!-- 3. 角色所属资源区 -->
+		 <div class="row">
+			<div class="col-md-12">
+				<tree-grid tree-data="tree_data"></tree-grid>
+			</div>		 
+		 </div>
+		 <!-- //. 3.角色资源  结束  -->
+	</div>	 
+	
+
+	

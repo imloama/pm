@@ -1,0 +1,44 @@
+	<div  class="content-header">
+          <ol class="breadcrumb">
+              <li><a href="javascript:void(0)"><i class="fa fa-home padding-r-5"></i>主页</a></li>
+              <li><a href="javascript:void(0)"><i class="fa fa-cogs padding-r-5"></i>系统管理</a></li>
+              <li class="active"><i class="fa fa-male padding-r-5"></i>角色管理</li>
+          </ol>
+	</div>
+	<!-- 分成上下两个区域,上部为按钮区,下部为内容区,内容区显示为两部分,左侧树,右侧form表单 -->
+	<div class="content">
+		  <!-- 1. 查询区 -->
+		 <div class="row">
+		 	<div class="col-md-12">
+		 		<form class="form-inline" role="form" ng-submit="search()">
+		 			 <div class="form-group">
+					    <div class="input-group">
+					      <div class="input-group-addon">编码</div>
+					      <input class="form-control" type="text" id="code" name="code" placeholder="请输入编码" ng-model="searchForm.code">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="input-group">
+					      <div class="input-group-addon">名称</div>
+					      <input class="form-control" type="text" id="name" name="name" placeholder="请输入名称" ng-model="searchForm.name">
+					    </div>
+					  </div>
+						  <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search padding-r-5"></i>查询</button>
+					  <div class="btn-group">
+						  <button type="button" class="btn btn-sm btn-primary" ng-click="add()"><i class="fa fa-plus padding-r-5"></i>新增</button>
+						  <button type="button" class="btn btn-sm btn-info" ng-click="edit()"><i class="fa fa-edit padding-r-5"></i>修改</button>
+						  <button type="button" class="btn btn-sm btn-danger" ng-click="del()"><i class="fa fa-times padding-r-5"></i>删除</button>
+					  </div>
+		 		</form>
+		 	</div>
+		 </div><!-- //查询区结束 -->
+		 <hr>
+		 <!-- 2. 内容区 -->
+		 <div class="row">
+		 	<div id="jqgrid" class="col-md-12">
+		 		<table id="dataGrid"></table>
+		 		<div id="jqGridPager01"></div>
+		 	</div>
+		 </div><!-- //内容区结束 -->
+	</div>	 
+	

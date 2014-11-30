@@ -1,0 +1,77 @@
+/* app css stylesheet */
+html{
+	font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体" ! important;
+}
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.menutree-show{
+	display:block;
+}
+.menutree-hide{
+	display:none;
+}
+
+
+.error{
+	color:#f56954;
+	
+}
+
+
+.padding-r-5{
+	padding-right:5px;
+}
+/**提示信息*/
+.msginfo{
+	padding:10px 10px;
+	margin:0 0;
+}
+.xubox_layer{
+	float:right;
+}
+.p-t-b-5{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.pagination{
+	margin:0;
+}
+.total-div{
+	padding-right:10px;
+	height:30px;
+	line-height:30px;
+    width:100%;
+	
+}
+.total-txt{
+	height:30px;
+	line-height:30px;
+	 vertical-align: bottom;
+}

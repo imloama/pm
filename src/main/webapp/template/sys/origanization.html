@@ -1,0 +1,80 @@
+	<div  class="content-header">
+          <ol class="breadcrumb">
+              <li><a href="javascript:void(0)"><i class="fa fa-home"></i>主页</a></li>
+              <li><a href="javascript:void(0)"><i class="fa fa-cogs"></i>系统管理</a></li>
+              <li class="active"><i class="fa fa-cubes"></i>部门管理</li>
+          </ol>
+	</div>
+	<!-- 分成上下两个区域,上部为按钮区,下部为内容区,内容区显示为两部分,左侧树,右侧form表单 -->
+	<div class="content">
+		<!-- 信息提示区 -->
+		<div class="row">
+			<div class="alert  alert-danger" role="alert" ng-show="showError()">
+			  <button type="button" class="close" data-dismiss="alert" ng-click="closeError()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			  {{errmsg}}
+			</div>
+			<div class="alert  alert-success" role="alert" ng-show="showMsg()">
+			  <button type="button" class="close" data-dismiss="alert" ng-click="closeMsg()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			  {{successmsg}}
+			</div>
+		</div>
+	
+		 <!-- 1.按钮区 -->
+		 <div class="row">
+		 	<div class="col-md-12">
+		 		<div class="btn-group">
+				  <button type="button" class="btn btn-sm btn-primary" ng-click="add()"><i class="fa fa-plus padding-r-5"></i>新增</button>
+				  <button type="button" class="btn btn-sm btn-info" ng-click="edit()"><i class="fa fa-edit padding-r-5"></i>修改</button>
+				  <button type="button" class="btn btn-sm btn-danger" ng-click="del()"><i class="fa fa-times padding-r-5"></i>删除</button>
+				</div>
+		 	</div>
+		 </div><!-- //按钮区结束 -->
+		 <hr>
+		 <!-- 2. 内容区 -->
+		 <div class="row">
+		 	<div class="col-md-2">
+		 		<ul tree id="origTree" class="ztree" ng-model="selectedOrig"></ul>
+		 	</div>
+		 	<div class="col-md-10">
+		 		<form class="form-horizontal" name="origForm" role="form" ng-submit="save()">
+		 		  <fieldset>
+		 			<div class="form-group">
+					    <label for="name" class="col-sm-2 control-label">名称</label>
+					    <div class="col-sm-10">
+					      <input type="name" class="form-control" id="name" name="name" ng-model="selectedOrig.name" ng-disabled="isDisable()" placeholder="名称">
+					    </div>
+					</div>
+		 			<div class="form-group">
+					    <label for="parent" class="col-sm-2 control-label">上级组织</label>
+					    <div class="col-sm-10">
+					      <select id="parent" name="parent" class="form-control" ng-model="selectedOrig.parentId" ng-disabled="isDisable()">
+					      	  <option></option>
+					      	  <option ng-repeat="orig in origs" value="{{orig.id}}">{{orig.name}}</option>
+						  </select>
+					    </div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2">
+						</div>
+						<div class="col-sm-10">
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" ng-model="selectedOrig.available" ng-disabled="isDisable()">可用
+							  </label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					      <button type="submit" class="btn btn-sm btn-primary" ng-disabled="isDisable()">
+					      	<i class="fa fa-save padding-r-5"></i>保存</button>
+					      <button type="submit" class="btn btn-sm btn-danger" ng-click="cancel()" ng-disabled="isDisable()">
+					      	<i class="fa fa-times-circle padding-r-5"></i>取消</button>
+					    </div>
+					  </div>
+		 			</fieldset>
+		 		</form>
+		 	</div>
+		 </div><!-- //内容区结束 -->
+	</div>	 
+	
